@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <title>Centro MEMI - Universidad Mayor de San Simón</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -11,7 +12,17 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <div class="logo-circle">MEMI</div>
+                <div class="logo-icons">
+                    <div class="logo-icon-container">
+                        <img src="assets/fonts/icons/umss.png" alt="UMSS" class="logo-icon faculty-icon">
+                    </div>
+                    <div class="logo-icon-container">
+                        <img src="assets/fonts/icons/imagen-01.png" alt="Facultad" class="logo-icon faculty-icon">
+                    </div>
+                    <div class="logo-icon-container">
+                        <img src="assets/fonts/icons/iconoMEMI.png" alt="Centro MEMI" class="logo-icon center-icon">
+                    </div>
+                </div>
                 <div>
                     <div class="logo-text">Universidad Mayor de San Simón</div>
                     <div class="logo-subtitle">Centro MEMI</div>
@@ -59,6 +70,14 @@
             <p class="about-text">
                 El Centro MEMI es una institución de investigación y desarrollo tecnológico de la Universidad Mayor de San Simón, comprometida con la excelencia académica y la innovación.
             </p>
+
+            <!-- Imagen destacada -->
+            <div class="image-showcase">
+                <div class="image-showcase-content">
+                    <h3>Innovación y Tecnología</h3>
+                    <p>Desarrollamos soluciones tecnológicas avanzadas para la educación y la investigación, contribuyendo al progreso académico y científico de nuestra universidad.</p>
+                </div>
+            </div>
 
             <div class="services-grid">
                 <div class="service-card fade-in">

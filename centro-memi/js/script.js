@@ -223,29 +223,36 @@ function initAnimations() {
 // Mostrar notificaciones
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <span>${getNotificationIcon(type)}</span>
-            <span>${message}</span>
-        </div>
-    `;
     
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 25px;
-        border-radius: 10px;
-        color: white;
-        font-weight: 500;
-        font-size: 14px;
-        z-index: 10000;
-        max-width: 300px;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
-        background: ${getNotificationColor(type)};
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    `;
+    // Crear elementos de forma segura sin innerHTML
+    const contentDiv = document.createElement('div');
+    contentDiv.style.cssText = 'display: flex; align-items: center; gap: 10px;';
+    
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = getNotificationIcon(type);
+    
+    const messageSpan = document.createElement('span');
+    messageSpan.textContent = message;
+    
+    contentDiv.appendChild(iconSpan);
+    contentDiv.appendChild(messageSpan);
+    notification.appendChild(contentDiv);
+    
+    // Aplicar estilos de forma segura
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.padding = '15px 25px';
+    notification.style.borderRadius = '10px';
+    notification.style.color = 'white';
+    notification.style.fontWeight = '500';
+    notification.style.fontSize = '14px';
+    notification.style.zIndex = '10000';
+    notification.style.maxWidth = '300px';
+    notification.style.transform = 'translateX(100%)';
+    notification.style.transition = 'all 0.3s ease';
+    notification.style.background = getNotificationColor(type);
+    notification.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
     
     document.body.appendChild(notification);
     

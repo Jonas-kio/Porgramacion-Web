@@ -3,103 +3,662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
-    <title>Centro MEMI - Universidad Mayor de San Simón</title>
+    <meta name="description" content="Centro de Mejoramiento de la Enseñanza de la Matemática e Informática - Universidad Mayor de San Simón">
+    <meta name="keywords" content="MEMI, UMSS, Matemática, Informática, Educación, Investigación, FCyT">
+    <meta name="author" content="Centro MEMI - FCyT UMSS">
+    <title>Centro MEMI - FCyT UMSS</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header con íconos + texto + botón -->
     <header class="header">
         <div class="header-container">
-            <div class="logo">
-                <div class="logo-icons">
-                    <div class="logo-icon-container">
-                        <img src="assets/fonts/icons/umss.png" alt="UMSS" class="logo-icon faculty-icon">
-                    </div>
-                    <div class="logo-icon-container">
-                        <img src="assets/fonts/icons/imagen-01.png" alt="Facultad" class="logo-icon faculty-icon">
-                    </div>
-                    <div class="logo-icon-container">
-                        <img src="assets/fonts/icons/iconoMEMI.png" alt="Centro MEMI" class="logo-icon center-icon">
-                    </div>
+            <div class="header-left">
+                <div class="header-icons">
+                    <img src="assets/images/fonts/icons/umss.png" alt="UMSS" class="header-icon-xl" onerror="this.style.display='none'">
+                    <img src="assets/images/fonts/icons/fcyt.png" alt="FCyT" class="header-icon-xl" onerror="this.style.display='none'">
+                    <img src="assets/images/fonts/icons/iconoMEMI.png" alt="MEMI" class="header-icon-xl memi" onerror="this.style.display='none'">
                 </div>
-                <div>
-                    <div class="logo-text">Universidad Mayor de San Simón</div>
-                    <div class="logo-subtitle">Centro MEMI</div>
+                <div class="header-title">
+                    <div class="uni-name">Universidad Mayor de San Simón</div>
+                    <div class="center-name">Centro MEMI</div>
                 </div>
             </div>
-            <button class="chat-btn">Hoy!</button>
+            <button class="chat-btn" onclick="alert('¡Hola!')">Hoy!</button>
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navegación tipo persiana -->
     <nav class="nav">
         <div class="nav-container">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="#" class="nav-link active">Inicio</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Misión Visión Valores</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Acerca de ▼</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Convocatorias</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Publicaciones</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Servicios</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">ICPC-UMSS</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contacto</a></li>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i> Menú
+            </button>
+            <ul class="nav-list" id="navList">
+                <li class="nav-item">
+                    <a href="#mision-vision" class="nav-link">Misión Visión Valores</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        Acerca de <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#antecedentes">Antecedentes</a>
+                        <a href="#datos-historicos">Datos históricos</a>
+                        <a href="#organigrama">Organigrama</a>
+                        <a href="#autoridades">Autoridades - Personal</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#cursos" class="nav-link">Cursos / Seminarios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#publicaciones" class="nav-link">Publicaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#servicios" class="nav-link">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#icpc" class="nav-link">ICPC UMSS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contacto" class="nav-link">Contacto</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Bienvenidos al Centro MEMI</h1>
-            <p>Centro de investigación y desarrollo de tecnologías para la educación</p>
+<!-- Carrusel de avisos -->
+<div class="carousel" id="carousel">
+    <!-- Slide 0 con imagen -->
+    <div class="carousel-slide active">
+        <img src="assets/images/carousel/anuncio-0.png" alt="Centro MEMI"
+             onerror="this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600'">
+        <div class="carousel-caption">
+            <h2>Bienvenidos al Centro MEMI</h2>
+            <p>Centro de Mejoramiento de la Enseñanza de la Matemática e Informática</p>
         </div>
-        <button class="hero-nav prev">‹</button>
-        <button class="hero-nav next">›</button>
-        <div class="hero-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-    </section>
+    </div>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="about-container">
-            <h2>Sobre Nosotros</h2>
-            <p class="about-text">
-                El Centro MEMI es una institución de investigación y desarrollo tecnológico de la Universidad Mayor de San Simón, comprometida con la excelencia académica y la innovación.
+    <!-- Slide 1 -->
+    <div class="carousel-slide">
+        <img src="assets/images/carousel/anuncio-1.png" alt="Investigación"
+             onerror="this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600'">
+        <div class="carousel-caption">
+            <h3>Investigación de Vanguardia</h3>
+            <p>Desarrollamos tecnología de punta en educación matemática e informática</p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+        <img src="assets/images/carousel/anuncio-2.png" alt="Formación"
+             onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600'">
+        <div class="carousel-caption">
+            <h3>Formación Académica</h3>
+            <p>Programas de posgrado y capacitación especializada</p>
+        </div>
+    </div>
+
+    <!-- Controles -->
+    <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-nav carousel-next" onclick="changeSlide(1)">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Puntos -->
+    <div class="carousel-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+</div>
+
+<!-- Contenido principal -->
+<main>
+
+        <!-- Misión Visión Valores -->
+        <section id="mision-vision">
+            <h2 class="section-title">Misión, Visión y Valores</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3><i class="fas fa-bullseye"></i> Misión</h3>
+                    <p>Brindar cursos especializados, asesoramiento y elaboración de textos de apoyo a profesionales de las áreas de Matemáticas e Informática tanto de Universidad como de Colegio, orientados al mejoramiento de su enseñanza y aprendizaje.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-eye"></i> Visión</h3>
+                    <p>Ser un Centro de apoyo de referencia en la enseñanza de la Matemática y la Informática en nuestra comunidad, tanto para profesionales universitarios, profesores de colegio y estudiantes.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-heart"></i> Valores</h3>
+                    <p>Nuestros valores son:</p>
+                    <ul>
+                        <li>Respeto</li>
+                        <li>Colaboración</li>
+                        <li>Compromiso</li>
+                        <li>Responsabilidad</li>
+                        <li>Confianza</li>
+                        <li>Trabajo en equipo</li>
+                        <li>Espíritu crítico</li>
+                        <li>Innovación</li>
+                        <li>Creatividad</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Antecedentes -->
+        <section id="antecedentes" class="section-alt">
+            <h2 class="section-title">Antecedentes</h2>
+            <div class="content-single">
+                <div class="card">
+                    <p>En enero de 1991 inició sus actividades el Programa de Mejoramiento de la Enseñanza de la Matemática e Informática (MEMI), con el objetivo de mejorar la educación en las áreas de Matemática e Informática de la Facultad de Ciencias y Tecnología en la Universidad Mayor de San Simón.</p>
+                    
+                    <p>El Proyecto cubrió tres áreas: Matemáticas a nivel universitario, Matemáticas a nivel ciclo medio e Informática a nivel universitario. La segunda fase del Programa MEMI abarca el período 1994-1997, en la cual se destacan los primeros posgrados de San Simón, en áreas de Matemática e Informática.</p>
+                    
+                    <p>Finalmente, la tercera fase abarca el período 1999-2003. Su tarea fundamental, en base al compromiso asumido con los cooperantes holandeses (NUFFIC y la Universidad de Utrecht), fue garantizar la sostenibilidad de las actividades de este Programa.</p>
+                    
+                    <p><strong>A partir del 2010</strong>, mediante Resolución Rectoral N° 389/10, el Programa MEMI adopta la denominación de <strong>Centro de Mejoramiento de la Enseñanza de la Matemática e Informática (Centro MEMI)</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Datos Históricos -->
+        <section id="datos-historicos">
+            <h2 class="section-title">Datos Históricos</h2>
+            <div class="content-single">
+                <div class="card">
+                    <h3>Cronología del Centro MEMI</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1991</div>
+                            <div class="timeline-content">
+                                <h4>Inicio del Programa MEMI</h4>
+                                <p>Primera red nacional de computadoras con conexión a Internet y dotación interna de servicio de correo electrónico. Curso de fundamentos de Ciencias de la computación dictados por expertos de la Universidad de Utrecht.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1991-1993</div>
+                            <div class="timeline-content">
+                                <h4>Primer Nodo Internet</h4>
+                                <p>Primer nodo de red internet en la región. Primer programa nacional de formación de profesores de secundaria en Didáctica de las Matemáticas.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1995-1996</div>
+                            <div class="timeline-content">
+                                <h4>Primeras Maestrías</h4>
+                                <p>Primeras Maestría nacionales en Matemáticas, en Matemática aplicada e Informática. Seminario UNESCO sobre Enseñanza de las Ciencias y las Matemáticas.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1996-2003</div>
+                            <div class="timeline-content">
+                                <h4>Postgrados y Sistemas</h4>
+                                <p>Cursos-crédito de la Maestría en Didáctica de las Ciencias. Postgrado de Maestría en Informática a nivel nacional. Desarrollo de sistemas: Mercurio, Alfa-Centauro y GenGIS.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2003-2007</div>
+                            <div class="timeline-content">
+                                <h4>Educación Virtual</h4>
+                                <p>Primer Diplomado para formar "Tutores virtuales". Primer Curso Propedéutico Virtual. Desarrollo de Moodle docente y Moodle estudiante. Red de comunidades académicas Ajayu.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2007-2013</div>
+                            <div class="timeline-content">
+                                <h4>Tecnologías Avanzadas</h4>
+                                <p>Desarrollo de Ge-Folder (portafolio electrónico). Implementación piloto de voz-IP. Servidor de Podcasting y Wiki. Modelo de documentación digital de unidades universitarias.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2008-2013</div>
+                            <div class="timeline-content">
+                                <h4>Universidad y TICs</h4>
+                                <p>Proyecto ESyUSI-18. Experimentación con Mathematica. Diseño del sistema Studium. Talleres sobre Curriculum universitario. Publicaciones Alphamatrix y Articulos Didacticos.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2014-2018</div>
+                            <div class="timeline-content">
+                                <h4>Innovación Pedagógica</h4>
+                                <p>Proyecto de aplicación de TIC en la enseñanza del Cálculo. Personalización de Studium. Prototipo Laboratorio Virtual de Programación.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2019-2020</div>
+                            <div class="timeline-content">
+                                <h4>TDT y SELI</h4>
+                                <p>TDT Educativa (Laboratorio de televisión digital) y SELI (Entornos inteligentes para el estudio y la inclusión digitales).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      <!-- Organigrama --> 
+<section id="organigrama" class="section-alt">
+    <h2 class="section-title">Organigrama</h2>
+
+    <!-- 📊 Imagen del organigrama centrada -->
+    <div style="display: flex; justify-content: center; margin: 30px 0;">
+        <img src="assets/images/organigrama.png" 
+             alt="Organigrama del Centro MEMI" 
+             style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    </div>
+
+    <div class="content-single">
+        <div class="card text-center">
+            <h3>Estructura Organizacional del Centro MEMI</h3>
+            <p style="margin-top: 20px; margin-bottom: 30px;">
+                El Centro MEMI está estructurado bajo la dirección del Rector de la UMSS y cuenta con tres laboratorios especializados:
             </p>
 
-            <!-- Imagen destacada -->
-            <div class="image-showcase">
-                <div class="image-showcase-content">
-                    <h3>Innovación y Tecnología</h3>
-                    <p>Desarrollamos soluciones tecnológicas avanzadas para la educación y la investigación, contribuyendo al progreso académico y científico de nuestra universidad.</p>
-                </div>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">🎓</div>
-                    <h3>Formación Académica</h3>
-                    <p>Ofrecemos programas de formación vocacional de alto nivel para profesionales del área de tecnología e informática.</p>
+            <!-- 🔬 Laboratorios -->
+            <div class="content-grid" style="margin-top: 40px;">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Laboratorio de Educación Científica</h3>
+                    <p>Trabajo en temas propios a la enseñanza de la matemática media y universitaria, y la enseñanza de la informática universitaria.</p>
                 </div>
 
-                <div class="service-card fade-in">
-                    <div class="service-icon">📚</div>
-                    <h3>Investigación</h3>
-                    <p>Desarrollamos proyectos de investigación en áreas prioritarias de la tecnología y la informática a nivel nacional e internacional.</p>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Laboratorio de TIC's y Multimedia</h3>
+                    <p>Desarrollo de ingeniería de entornos informáticos que resuelven y apoyan procesos de integración de TIC's en el curriculum y el aula.</p>
                 </div>
 
-                <div class="service-card fade-in">
-                    <div class="service-icon">📄</div>
-                    <h3>Publicaciones</h3>
-                    <p>Contamos con publicaciones científicas en revistas indexadas y congresos internacionales de alto impacto.</p>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Laboratorio de Modelización y Simulación</h3>
+                    <p>Simulación virtual de procesos relativos a la enseñanza, estudio y aprendizaje de saberes matemáticos e informáticos.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
+        <!-- Autoridades -->
+        <section id="autoridades">
+            <h2 class="section-title">Autoridades - Personal</h2>
+            <div class="content-grid">
+                <div class="card person-card">
+                    <img class="person-photo" src="assets/images/autoridades/jaldin.jpg" alt="Mgr. Kirt Rolando Jaldín Rosales"
+                         onerror="this.outerHTML='<div class=\'person-fallback\'>KRJ</div>'">
+                    <h3>Director Centro MEMI</h3>
+                    <p><strong>Mgr. Kirt Rolando Jaldín Rosales</strong></p>
+                    <p>Director del Centro de Mejoramiento de la Enseñanza de la Matemática e Informática</p>
+                </div>
+                <div class="card person-card">
+                    <img class="person-photo" src="assets/images/autoridades/orellana.jpg" alt="Mgr. Jorge Orellana Araoz"
+                         onerror="this.outerHTML='<div class=\'person-fallback\'>JOA</div>'">
+                    <h3>Coordinador Área Informática</h3>
+                    <p><strong>Mgr. Jorge Orellana Araoz</strong></p>
+                    <p>Coordinación de actividades del área de Informática</p>
+                </div>
+                <div class="card person-card">
+                    <img class="person-photo" src="assets/images/autoridades/zegarra.jpg" alt="Mgr. Luis Roberto Zegarra Dorado"
+                         onerror="this.outerHTML='<div class=\'person-fallback\'>LRZ</div>'">
+                    <h3>Coordinador Área Matemática</h3>
+                    <p><strong>Mgr. Luis Roberto Zegarra Dorado</strong></p>
+                    <p>Coordinación de actividades del área de Matemáticas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cursos / Seminarios -->
+        <section id="cursos" class="section-alt">
+            <h2 class="section-title">Cursos / Seminarios</h2>
+            <div class="content-single">
+                <div class="card">
+                    <p class="text-center" style="margin-bottom: 30px;">El Centro MEMI ofrece diversos cursos y seminarios especializados. Los afiches y materiales de los cursos actuales se publican cronológicamente en esta sección.</p>
+                    
+                    <div class="content-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Capacitación Docente</h3>
+                            <p>Cursos especializados para docentes universitarios y de colegio en metodologías de enseñanza de Matemáticas e Informática.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3>Programas Técnicos</h3>
+                            <p>Seminarios y talleres en tecnologías educativas emergentes y herramientas de apoyo pedagógico.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3>Certificaciones</h3>
+                            <p>Programas de certificación profesional con valor curricular en áreas especializadas.</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-center" style="margin-top: 30px;"><em>Para información sobre cursos vigentes, contáctenos a través de nuestros canales oficiales.</em></p>
+
+                    <!-- Talleres y cursos ICPC -->
+                    <div style="margin-top: 28px;">
+                        <div class="icpc-grid">
+                            <div class="icpc-card">
+                                <img src="assets/images/icpc-taller2023.png" alt="ICPC Taller 2023" onerror="this.style.display='none'">
+                                <h4>ICPC Taller 2023</h4>
+                            </div>
+                            <div class="icpc-card">
+                                <img src="assets/images/icpc-taller2025.png" alt="ICPC Taller 2025" onerror="this.style.display='none'">
+                                <h4>ICPC Taller 2025</h4>
+                            </div>
+                            <div class="icpc-card">
+                                <img src="assets/images/tallerIA-memi.png" alt="Taller IA MEMI" onerror="this.style.display='none'">
+                                <h4>Taller IA MEMI</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publicaciones -->
+        <section id="publicaciones">
+            <h2 class="section-title">Publicaciones</h2>
+            <div class="content-single">
+                <div class="card">
+                    <p class="text-center" style="margin-bottom: 30px;">El Centro MEMI genera y publica material académico de alta calidad. Los documentos están clasificados por área (Matemáticas e Informática) con descripción y acceso al contenido completo.</p>
+                    
+                    <div class="content-grid">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3>Revistas Indexadas</h3>
+                            <p>Artículos científicos publicados en revistas de reconocimiento nacional e internacional en educación matemática e informática.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Congresos Internacionales</h3>
+                            <p>Presentación de trabajos de investigación en eventos académicos especializados a nivel nacional e internacional.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Material Educativo</h3>
+                            <p>Desarrollo y publicación de libros, manuales, guías didácticas y recursos de apoyo para la enseñanza.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <h3>Publicaciones Alphamatrix</h3>
+                            <p>Serie de publicaciones especializadas en matemáticas y su enseñanza.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3>Articulos Didacticos</h3>
+                            <p>Investigación universitaria en didáctica de las ciencias y las matemáticas.</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3>Textos de Apoyo</h3>
+                            <p>Material didáctico elaborado para profesionales de Matemáticas e Informática.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section id="servicios" class="section-alt">
+            <h2 class="section-title">Servicios</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Cursos de Formación para Profesores de Colegio</h3>
+                    <p>Enseñando a enseñar en las áreas de Matemáticas y Computación, con un enfoque práctico y basado en las nuevas tecnologías de información y comunicación, respetando los lineamientos educativos para secundaria, pero con una proyección de utilidad para la transición de alumnos Colegio - Universidad.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Cursos de Actualización para Profesionales</h3>
+                    <p>Orientado a la actualización de profesionales egresados de las carreras de Matemáticas, Informática y Sistemas, además de otras carreras, en tecnologías informáticas emergentes o de tendencia. Todos los cursos con valor curricular para los participantes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Asesoramiento en la Enseñanza</h3>
+                    <p>Brindamos asesoramiento y seguimiento a profesores de secundaria y docentes universitarios de las áreas de Matemáticas e Informática en métodos, técnicas y herramientas pedagógicas que mejoren su práctica docente y el aprendizaje significativo de sus estudiantes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Conferencias, Seminarios Especializados</h3>
+                    <p>Facilitamos nuestros ambientes e infraestructura para conferencias, seminarios, talleres, conversatorios con profesionales destacados locales o extranjeros, que quieran compartir sus experiencias y conocimientos. Disponemos de dos salas con capacidad de 40 personas cada una, equipados con: data display, pizarras, porta banderas, etc.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Alquiler de Ambientes</h3>
+                    <p>Disponemos de dos ambientes cómodos para defensas públicas, cursos, seminarios, talleres, de carácter privado, con todo el equipamiento para el éxito de sus eventos.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Elaboración de Textos de Apoyo</h3>
+                    <p>Desarrollo y elaboración de recursos educativos especializados y textos de apoyo a profesionales de las áreas de Matemáticas e Informática.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ICPC UMSS -->
+        <section id="icpc">
+            <h2 class="section-title">ICPC UMSS</h2>
+            <div class="content-single">
+                <div class="card">
+                    <h3>Representando a Bolivia en la Competencia Mundial</h3>
+                    <p>La UMSS participa activamente en el ICPC, la competencia de programación más prestigiosa del mundo, donde equipos de tres estudiantes resuelven problemas algorítmicos complejos bajo presión.</p>
+
+                    <!-- Carrusel ICPC -->
+                    <div class="carousel-icpc" id="carousel-icpc">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide active">
+                            <img src="assets/images/icpc/icpc1.png" alt="ICPC UMSS 1"
+                                 onerror="this.src='https://images.unsplash.com/photo-1605902711622-cfb43c4437b6?w=1600'">
+                            <div class="carousel-caption">
+                                <h3>Competencia Nacional</h3>
+                                <p>Los equipos UMSS compiten resolviendo problemas algorítmicos desafiantes.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <img src="assets/images/icpc/icpc2.png" alt="ICPC UMSS 2"
+                                 onerror="this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600'">
+                            <div class="carousel-caption">
+                                <h3>Entrenamientos Intensivos</h3>
+                                <p>Preparación rigurosa con apoyo de docentes y egresados expertos.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <img src="assets/images/icpc/icpc3.png" alt="ICPC UMSS 3"
+                                 onerror="this.src='https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600'">
+                            <div class="carousel-caption">
+                                <h3>Representando a Bolivia</h3>
+                                <p>Equipos UMSS destacan en competencias internacionales ICPC.</p>
+                            </div>
+                        </div>
+
+                        <!-- Controles -->
+                        <button class="carousel-nav prev" onclick="changeIcpcSlide(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button
+                        <button class="carousel-nav next" onclick="changeIcpcSlide(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Puntos -->
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="goToIcpcSlide(0)"></span>
+                            <span class="dot" onclick="goToIcpcSlide(1)"></span>
+                            <span class="dot" onclick="goToIcpcSlide(2)"></span>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 25px;"><strong>El Centro MEMI acoge en su infraestructura al ICPC UMSS</strong>, proporcionando los espacios, recursos y apoyo necesario para la preparación y entrenamiento de los equipos competidores.</p>
+                    
+                    <div class="icpc-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Años Participando</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Estudiantes Entrenados</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Equipos Clasificados</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto" class="section-alt">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-grid">
+                <div class="card">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Campus Central UMSS<br>Edificio MEMI<br>Cochabamba, Bolivia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>(+591) 4 4666037</p>
+                            <p>IP: 36540</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Correo Electrónico</h4>
+                            <p>memi@fcyt.umss.edu.bo</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <h4>Horarios de Atención</h4>
+                        <p>Lunes a Viernes: 8:00 - 12:00 y 14:00 - 18:00</p>
+                        <p>Sábados: 8:00 - 12:00</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4>Ubicación en el Mapa</h4>
+                        <p>
+                            <a href="https://www.google.com/maps/place/CENTRO+DE+PROGRAMA+DE+MEJORAMIENTO+DE+LA+ENSE%C3%91ANZA+DE+LA+MATEM%C3%81TICA+E+INFORM%C3%81TICA+(MEMI)/@-17.3931474,-66.1495373,17z/data=!3m1!4b1!4m6!3m5!1s0x93e37335d47b15c5:0x5c3d5c166e912e53!8m2!3d-17.3931525!4d-66.1469624!16s%2Fg%2F11rshb3c90?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
+                                Ver en Google Maps
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Correo Electrónico</h4>
+                <a href="mailto:memi@fcyt.umss.edu.bo" class="footer-link">
+                    <i class="fas fa-envelope"></i>
+                    memi@fcyt.umss.edu.bo
+                </a>
+            </div>
+            <div class="footer-section">
+                <h4>Síguenos</h4>
+                <a href="https://www.facebook.com/memiumss/?locale=es_LA" target="_blank" class="footer-link">
+                    <i class="fab fa-facebook"></i>
+                    Facebook
+                </a>
+            </div>
+            <div class="footer-section">
+                <h4>Web FCyT</h4>
+                <a href="https://fcyt.umss.edu.bo" target="_blank" class="footer-link">
+                    <i class="fas fa-external-link-alt"></i>
+                    Visitar sitio
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Centro MEMI - FCyT UMSS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scrollTop" onclick="scrollToTop()" title="Ir arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="js/script.js"></script>
 </body>

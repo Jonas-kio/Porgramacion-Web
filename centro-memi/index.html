@@ -12,25 +12,26 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header con íconos + texto + botón -->
-    <header class="header">
-        <div class="header-container">
-            <div class="header-left">
-                <div class="header-icons">
-                    <img src="assets/images/fonts/icons/umss.png" alt="UMSS" class="header-icon-xl" onerror="this.style.display='none'">
-                    <img src="assets/images/fonts/icons/fcyt.png" alt="FCyT" class="header-icon-xl" onerror="this.style.display='none'">
-                    <img src="assets/images/fonts/icons/iconoMEMI.png" alt="MEMI" class="header-icon-xl memi" onerror="this.style.display='none'">
-                </div>
-                <div class="header-title">
-                    <div class="uni-name">Universidad Mayor de San Simón</div>
-                    <div class="center-name">Centro MEMI</div>
-                </div>
+   <!-- Header -->
+<header class="header">
+    <div class="header-container">
+        <div class="header-left">
+            <div class="header-icons">
+                <img src="assets/images/fonts/icons/umss.png" alt="UMSS" class="header-icon-xl">
+                <img src="assets/images/fonts/icons/fcyt.png" alt="FCyT" class="header-icon-xl">
+                <img src="assets/images/fonts/icons/iconoMEMI.png" alt="MEMI" class="header-icon-xl memi">
             </div>
-            <button class="chat-btn" onclick="alert('¡Hola!')">Hoy!</button>
+            <div class="header-title">
+                <div class="uni-name">Universidad Mayor de San Simón</div>
+                <div class="center-name">Centro MEMI</div>
+            </div>
         </div>
-    </header>
+            <img src="assets/images/fonts/icons/iconoUmss.png" alt="UMSS Icon" style="width: 80px; height: 80px;">
+        </button>
+    </div>
+</header>
 
-    <!-- Navegación tipo persiana -->
+    <!-- Navegación -->
     <nav class="nav">
         <div class="nav-container">
             <button class="menu-toggle" onclick="toggleMenu()">
@@ -70,58 +71,47 @@
         </div>
     </nav>
 
-<!-- Carrusel de avisos -->
-<div class="carousel" id="carousel">
-    <!-- Slide 0 con imagen -->
-    <div class="carousel-slide active">
-        <img src="assets/images/carousel/anuncio-0.png" alt="Centro MEMI"
-             onerror="this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600'">
-        <div class="carousel-caption">
-            <h2>Bienvenidos al Centro MEMI</h2>
-            <p>Centro de Mejoramiento de la Enseñanza de la Matemática e Informática</p>
+    <!-- Carrusel principal -->
+    <div class="carousel" id="carousel">
+        <div class="carousel-slide active">
+            <img src="assets/images/carousel/anuncio-0.png" alt="Centro MEMI">
+            <div class="carousel-caption">
+                <h2>Bienvenidos al Centro MEMI</h2>
+                <p>Centro de Mejoramiento de la Enseñanza de la Matemática e Informática</p>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <img src="assets/images/carousel/anuncio-1.png" alt="Investigación">
+            <div class="carousel-caption">
+                <h3>Investigación de Vanguardia</h3>
+                <p>Desarrollamos tecnología de punta en educación matemática e informática</p>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <img src="assets/images/carousel/anuncio-2.png" alt="Formación">
+            <div class="carousel-caption">
+                <h3>Formación Académica</h3>
+                <p>Programas de posgrado y capacitación especializada</p>
+            </div>
+        </div>
+
+        <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-nav carousel-next" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
         </div>
     </div>
 
-    <!-- Slide 1 -->
-    <div class="carousel-slide">
-        <img src="assets/images/carousel/anuncio-1.png" alt="Investigación"
-             onerror="this.src='https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600'">
-        <div
-         class="carousel-caption">
-            <h3>Investigación de Vanguardia</h3>
-            <p>Desarrollamos tecnología de punta en educación matemática e informática</p>
-        </div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="carousel-slide">
-        <img src="assets/images/carousel/anuncio-2.png" alt="Formación"
-             onerror="this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1600'">
-        <div class="carousel-caption">
-            <h3>Formación Académica</h3>
-            <p>Programas de posgrado y capacitación especializada</p>
-        </div>
-    </div>
-
-    <!-- Controles -->
-    <button class="carousel-nav carousel-prev" onclick="changeSlide(-1)">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="carousel-nav carousel-next" onclick="changeSlide(1)">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-
-    <!-- Puntos -->
-    <div class="carousel-dots">
-        <span class="dot active" onclick="goToSlide(0)"></span>
-        <span class="dot" onclick="goToSlide(1)"></span>
-        <span class="dot" onclick="goToSlide(2)"></span>
-    </div>
-</div>
-
-<!-- Contenido principal -->
-<main>
-
+    <main>
         <!-- Misión Visión Valores -->
         <section id="mision-vision">
             <h2 class="section-title">Misión, Visión y Valores</h2>
@@ -243,76 +233,70 @@
             </div>
         </section>
 
-      <!-- Organigrama --> 
-<section id="organigrama" class="section-alt">
-    <h2 class="section-title">Organigrama</h2>
+        <!-- Organigrama -->
+        <section id="organigrama" class="section-alt">
+            <h2 class="section-title">Organigrama</h2>
 
-    <!-- 📊 Imagen del organigrama centrada -->
-    <div style="display: flex; justify-content: center; margin: 30px 0;">
-        <img src="assets/images/organigrama/organigrama.png" 
-             alt="Organigrama del Centro MEMI" 
-             style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    </div>
+            <div style="display: flex; justify-content: center; margin: 30px 0;">
+                <img src="assets/images/organigrama/organigrama.png" 
+                     alt="Organigrama del Centro MEMI" 
+                     style="max-width: 90%; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            </div>
 
-    <div class="content-single">
-        <div class="card text-center">
-            <h3>Estructura Organizacional del Centro MEMI</h3>
-            <p style="margin-top: 20px; margin-bottom: 30px;">
-                El Centro MEMI está estructurado bajo la dirección del Rector de la UMSS y cuenta con tres laboratorios especializados:
-            </p>
+            <div class="content-single">
+                <div class="card text-center">
+                    <h3>Estructura Organizacional del Centro MEMI</h3>
+                    <p style="margin-top: 20px; margin-bottom: 30px;">
+                        El Centro MEMI está estructurado bajo la dirección del Rector de la UMSS y cuenta con tres laboratorios especializados:
+                    </p>
 
-            <!-- 🔬 Laboratorios -->
-            <div class="content-grid" style="margin-top: 40px;">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-flask"></i>
+                    <div class="content-grid" style="margin-top: 40px;">
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <h3>Laboratorio de Educación Científica</h3>
+                            <p>Trabajo en temas propios a la enseñanza de la matemática media y universitaria, y la enseñanza de la informática universitaria.</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h3>Laboratorio de TIC's y Multimedia</h3>
+                            <p>Desarrollo de ingeniería de entornos informáticos que resuelven y apoyan procesos de integración de TIC's en el curriculum y el aula.</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Laboratorio de Modelización y Simulación</h3>
+                            <p>Simulación virtual de procesos relativos a la enseñanza, estudio y aprendizaje de saberes matemáticos e informáticos.</p>
+                        </div>
                     </div>
-                    <h3>Laboratorio de Educación Científica</h3>
-                    <p>Trabajo en temas propios a la enseñanza de la matemática media y universitaria, y la enseñanza de la informática universitaria.</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Laboratorio de TIC's y Multimedia</h3>
-                    <p>Desarrollo de ingeniería de entornos informáticos que resuelven y apoyan procesos de integración de TIC's en el curriculum y el aula.</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <h3>Laboratorio de Modelización y Simulación</h3>
-                    <p>Simulación virtual de procesos relativos a la enseñanza, estudio y aprendizaje de saberes matemáticos e informáticos.</p>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
+        </section>
 
         <!-- Autoridades -->
         <section id="autoridades">
             <h2 class="section-title">Autoridades - Personal</h2>
             <div class="content-grid">
                 <div class="card person-card">
-                    <img class="person-photo" src="assets/images/autoridades/jaldin.jpg" alt="Mgr. Kirt Rolando Jaldín Rosales"
-                         onerror="this.outerHTML='<div class=\'person-fallback\'>KRJ</div>'">
+                    <img class="person-photo" src="assets/images/autoridades/jaldin.jpg" alt="Mgr. Kirt Rolando Jaldín Rosales">
                     <h3>Director Centro MEMI</h3>
                     <p><strong>Mgr. Kirt Rolando Jaldín Rosales</strong></p>
                     <p>Director del Centro de Mejoramiento de la Enseñanza de la Matemática e Informática</p>
                 </div>
                 <div class="card person-card">
-                    <img class="person-photo" src="assets/images/autoridades/orellana.jpg" alt="Mgr. Jorge Orellana Araoz"
-                         onerror="this.outerHTML='<div class=\'person-fallback\'>JOA</div>'">
+                    <img class="person-photo" src="assets/images/autoridades/orellana.jpg" alt="Mgr. Jorge Orellana Araoz">
                     <h3>Coordinador Área Informática</h3>
                     <p><strong>Mgr. Jorge Orellana Araoz</strong></p>
                     <p>Coordinación de actividades del área de Informática</p>
                 </div>
                 <div class="card person-card">
-                    <img class="person-photo" src="assets/images/autoridades/zegarra.jpg" alt="Mgr. Luis Roberto Zegarra Dorado"
-                         onerror="this.outerHTML='<div class=\'person-fallback\'>LRZ</div>'">
+                    <img class="person-photo" src="assets/images/autoridades/zegarra.jpg" alt="Mgr. Luis Roberto Zegarra Dorado">
                     <h3>Coordinador Área Matemática</h3>
                     <p><strong>Mgr. Luis Roberto Zegarra Dorado</strong></p>
                     <p>Coordinación de actividades del área de Matemáticas</p>
@@ -353,20 +337,35 @@
                     
                     <p class="text-center" style="margin-top: 30px;"><em>Para información sobre cursos vigentes, contáctenos a través de nuestros canales oficiales.</em></p>
 
-                    <!-- Talleres y cursos ICPC -->
                     <div style="margin-top: 28px;">
-                        <div class="icpc-grid">
-                            <div class="icpc-card">
-                                <img src="assets/images/taller-memi/icpc-taller2023.png" alt="ICPC Taller 2023" onerror="this.style.display='none'">
-                                <h4>ICPC Taller 2023</h4>
+                        <!-- Carrusel de Talleres MEMI -->
+                        <div class="carousel-talleres" id="carousel-talleres">
+                            <div class="carousel-slide active">
+                                <img src="assets/images/taller-memi/icpc-taller2023.png" alt="ICPC Taller 2023">
+                                <div class="carousel-caption">
+                                </div>
                             </div>
-                            <div class="icpc-card">
-                                <img src="assets/images/taller-memi/icpc-taller2025.png" alt="ICPC Taller 2025" onerror="this.style.display='none'">
-                                <h4>ICPC Taller 2025</h4>
+                            <div class="carousel-slide">
+                                <img src="assets/images/taller-memi/icpc-taller2025.png" alt="ICPC Taller 2025">
+                                <div class="carousel-caption">
+                                    <h3>ICPC Taller 2025</h3>
+                                </div>
                             </div>
-                            <div class="icpc-card">
-                                <img src="assets/images/taller-memi/tallerIA-memi.png" alt="Taller IA MEMI" onerror="this.style.display='none'">
-                                <h4>Taller IA MEMI</h4>
+                            <div class="carousel-slide">
+                                <img src="assets/images/taller-memi/tallerIA-memi.png" alt="Taller IA MEMI">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <button class="carousel-nav prev" onclick="changeTalleresSlide(-1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-nav next" onclick="changeTalleresSlide(1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots">
+                                <span class="dot active" onclick="goToTalleresSlide(0)"></span>
+                                <span class="dot" onclick="goToTalleresSlide(1)"></span>
+                                <span class="dot" onclick="goToTalleresSlide(2)"></span>
                             </div>
                         </div>
                     </div>
@@ -429,9 +428,13 @@
             </div>
         </section>
 
-        <!-- Servicios -->
-        <section id="servicios" class="section-alt">
-            <h2 class="section-title">Servicios</h2>
+ <!-- Servicios -->
+ <section id="servicios" class="section-alt">
+    <h2 class="section-title">Servicios</h2>
+    <div class="content-single">
+        <div class="card">
+            <p class="text-center" style="margin-bottom: 30px;">El Centro MEMI ofrece servicios especializados de formación, asesoramiento y apoyo para profesionales de Matemáticas e Informática.</p>
+            
             <div class="content-grid">
                 <div class="card">
                     <div class="card-icon">
@@ -440,27 +443,31 @@
                     <h3>Cursos de Formación para Profesores de Colegio</h3>
                     <p>Enseñando a enseñar en las áreas de Matemáticas y Computación, con un enfoque práctico y basado en las nuevas tecnologías de información y comunicación, respetando los lineamientos educativos para secundaria, pero con una proyección de utilidad para la transición de alumnos Colegio - Universidad.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3>Cursos de Actualización para Profesionales</h3>
-                    <p>Orientado a la actualización de profesionales egresados de las carreras de Matemáticas, Informática y Sistemas, además de otras carreras, en tecnologías informáticas emergentes o de tendencia. Todos los cursos con valor curricular para los participantes.</p>
-                </div>
+                
                 <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-user-graduate"></i>
                     </div>
+                    <h3>Cursos de Actualización para Profesionales</h3>
+                    <p>Orientado a la actualización de profesionales egresados de las carreras de Matemáticas, Informática y Sistemas, además de otras carreras, en tecnologías informáticas emergentes o de tendencia. Todos los cursos con valor curricular para los participantes.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
                     <h3>Asesoramiento en la Enseñanza</h3>
                     <p>Brindamos asesoramiento y seguimiento a profesores de secundaria y docentes universitarios de las áreas de Matemáticas e Informática en métodos, técnicas y herramientas pedagógicas que mejoren su práctica docente y el aprendizaje significativo de sus estudiantes.</p>
                 </div>
+                
                 <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Conferencias, Seminarios Especializados</h3>
-                    <p>Facilitamos nuestros ambientes e infraestructura para conferencias, seminarios, talleres, conversatorios con profesionales destacados locales o extranjeros, que quieran compartir sus experiencias y conocimientos. Disponemos de dos salas con capacidad de 40 personas cada una, equipados con: data display, pizarras, porta banderas, etc.</p>
+                    <h3>Conferencias y Seminarios Especializados</h3>
+                    <p>Facilitamos nuestros ambientes e infraestructura para conferencias, seminarios, talleres, conversatorios con profesionales destacados locales o extranjeros, que quieran compartir sus experiencias y conocimientos con profesionales y estudiantes de nuestra universidad. Disponemos de dos salas con capacidad de 40 personas cada una, equipados con: data display, pizarras, porta banderas, etc.</p>
                 </div>
+                
                 <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-door-open"></i>
@@ -468,15 +475,10 @@
                     <h3>Alquiler de Ambientes</h3>
                     <p>Disponemos de dos ambientes cómodos para defensas públicas, cursos, seminarios, talleres, de carácter privado, con todo el equipamiento para el éxito de sus eventos.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Elaboración de Textos de Apoyo</h3>
-                    <p>Desarrollo y elaboración de recursos educativos especializados y textos de apoyo a profesionales de las áreas de Matemáticas e Informática.</p>
-                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- ICPC UMSS -->
         <section id="icpc">
@@ -488,45 +490,34 @@
 
                     <!-- Carrusel ICPC -->
                     <div class="carousel-icpc" id="carousel-icpc">
-                        <!-- Slide 1 -->
                         <div class="carousel-slide active">
-                            <img src="assets/images/icpc/icpc1.png" alt="ICPC UMSS 1"
-                                 onerror="this.src='https://images.unsplash.com/photo-1605902711622-cfb43c4437b6?w=1600'">
+                            <img src="assets/images/icpc/icpc1.png" alt="ICPC UMSS 1">
                             <div class="carousel-caption">
-                                <h3>Competencia Nacional</h3>
                                 <p>Los equipos UMSS compiten resolviendo problemas algorítmicos desafiantes.</p>
                             </div>
                         </div>
 
-                        <!-- Slide 2 -->
                         <div class="carousel-slide">
-                            <img src="assets/images/icpc/icpc2.png" alt="ICPC UMSS 2"
-                                 onerror="this.src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600'">
+                            <img src="assets/images/icpc/icpc2.png" alt="ICPC UMSS 2">
                             <div class="carousel-caption">
-                                <h3>Entrenamientos Intensivos</h3>
                                 <p>Preparación rigurosa con apoyo de docentes y egresados expertos.</p>
                             </div>
                         </div>
 
-                        <!-- Slide 3 -->
                         <div class="carousel-slide">
-                            <img src="assets/images/icpc/icpc3.png" alt="ICPC UMSS 3"
-                                 onerror="this.src='https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600'">
+                            <img src="assets/images/icpc/icpc3.png" alt="ICPC UMSS 3">
                             <div class="carousel-caption">
-                                <h3>Representando a Bolivia</h3>
                                 <p>Equipos UMSS destacan en competencias internacionales ICPC.</p>
                             </div>
                         </div>
 
-                        <!-- Controles -->
                         <button class="carousel-nav prev" onclick="changeIcpcSlide(-1)">
                             <i class="fas fa-chevron-left"></i>
-                        </button
+                        </button>
                         <button class="carousel-nav next" onclick="changeIcpcSlide(1)">
                             <i class="fas fa-chevron-right"></i>
                         </button>
 
-                        <!-- Puntos -->
                         <div class="carousel-dots">
                             <span class="dot active" onclick="goToIcpcSlide(0)"></span>
                             <span class="dot" onclick="goToIcpcSlide(1)"></span>
@@ -554,77 +545,70 @@
             </div>
         </section>
 
-        <!-- Contacto -->
-        <section id="contacto" class="section-alt">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contact-grid">
-                <div class="card">
-                    <h3>Información de Contacto</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Dirección</h4>
-                            <p>Campus Central UMSS<br>Edificio MEMI<br>Cochabamba, Bolivia</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Teléfono</h4>
-                            <p>(+591) 4 4666037</p>
-                            <p>IP: 36540</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Correo Electrónico</h4>
-                            <p>memi@fcyt.umss.edu.bo</p>
-                        </div>
-                    </div>
-                    <div style="margin-top: 30px;">
-                        <h4>Horarios de Atención</h4>
-                        <p>Lunes a Viernes: 8:00 - 12:00 y 14:00 - 18:00</p>
-                        <p>Sábados: 8:00 - 12:00</p>
-                    </div>
-                    
-                    <div style="margin-top: 30px;">
-                        <h4>Ubicación en el Mapa</h4>
-                        <p>
-                            <a href="https://www.google.com/maps/place/CENTRO+DE+PROGRAMA+DE+MEJORAMIENTO+DE+LA+ENSE%C3%91ANZA+DE+LA+MATEM%C3%81TICA+E+INFORM%C3%81TICA+(MEMI)/@-17.3931474,-66.1495373,17z/data=!3m1!4b1!4m6!3m5!1s0x93e37335d47b15c5:0x5c3d5c166e912e53!8m2!3d-17.3931525!4d-66.1469624!16s%2Fg%2F11rshb3c90?entry=ttu&g_ep=EgoyMDI1MTAwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="map-link">
-                                Ver en Google Maps
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>Envíanos un Mensaje</h3>
-                    <form id="contactForm" onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Nombre Completo</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Asunto</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                        </button>
-                    </form>
+ <!-- Contacto -->
+<section id="contacto" class="section-alt">
+    <h2 class="section-title">Contacto</h2>
+    
+    <div class="contact-grid">
+        <!-- Tarjeta 1: Información de contacto -->
+        <div class="card">
+            <h3>Información de Contacto</h3>
+
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Dirección</h4>
+                    <p>Campus Central UMSS<br>Edificio MEMI<br>Cochabamba, Bolivia</p>
                 </div>
             </div>
-        </section>
-    </main>
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Teléfono</h4>
+                    <p>(+591) 4 4666037</p>
+                    <p>IP: 36540</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>Correo Electrónico</h4>
+                    <p><a href="mailto:memi@fcyt.umss.edu.bo">memi@fcyt.umss.edu.bo</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2: Horarios y mapa -->
+        <div class="card">
+            <h3>Horarios y Ubicación</h3>
+
+            <div class="schedule">
+                <h4>Horarios de Atención</h4>
+                <p>Lunes a Viernes: 8:00 - 12:00 y 14:00 - 18:00</p>
+                <p>Sábados: 8:00 - 12:00</p>
+            </div>
+
+            <div class="location">
+                <h4>Ubicación en el Mapa</h4>
+                <p>
+                    <a href="https://www.google.com/maps/place/CENTRO+DE+PROGRAMA+DE+MEJORAMIENTO+DE+LA+ENSE%C3%91ANZA+DE+LA+MATEM%C3%81TICA+E+INFORM%C3%81TICA+(MEMI)/@-17.3931474,-66.1495373,17z/data=!3m1!4b1!4m6!3m5!1s0x93e37335d47b15c5:0x5c3d5c166e912e53!8m2!3d-17.3931525!4d-66.1469624"
+                       target="_blank" rel="noopener noreferrer" class="map-link">
+                       Ver en Google Maps
+                    </a>
+                </p>
+
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.8939783059864!2d-66.1495373!3d-17.3931474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e37335d47b15c5%3A0x5c3d5c166e912e53!2sCENTRO%20DE%20PROGRAMA%20DE%20MEJORAMIENTO%20DE%20LA%20ENSE%C3%91ANZA%20DE%20LA%20MATEM%C3%81TICA%20E%20INFORM%C3%81TICA%20(MEMI)!5e0!3m2!1ses!2sbo!4v1699999999999"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -638,14 +622,14 @@
             </div>
             <div class="footer-section">
                 <h4>Síguenos</h4>
-                <a href="https://www.facebook.com/memiumss/?locale=es_LA" target="_blank" class="footer-link">
+                <a href="https://www.facebook.com/memiumss/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="footer-link">
                     <i class="fab fa-facebook"></i>
                     Facebook
                 </a>
             </div>
             <div class="footer-section">
                 <h4>Web FCyT</h4>
-                <a href="https://fcyt.umss.edu.bo" target="_blank" class="footer-link">
+                <a href="https://fcyt.umss.edu.bo" target="_blank" rel="noopener noreferrer" class="footer-link">
                     <i class="fas fa-external-link-alt"></i>
                     Visitar sitio
                 </a>
@@ -662,5 +646,3 @@
     </button>
 
     <script src="js/script.js"></script>
-</body>
-</html>

@@ -1,120 +1,171 @@
-// ==================== VARIABLES GLOBALES ====================
-let currentSlide = 0;
-let slideInterval;
-let currentIcpcSlide = 0;
-let icpcInterval;
+// ==================== CONFIGURACIÓN GLOBAL ====================
+const CONFIG = {
+    SLIDE_INTERVAL: 5000,
+    SCROLL_THRESHOLD: 300,
+    ANIMATION_THRESHOLD: 0.1,
+    COUNTER_DURATION: 2000
+};
 
-// ==================== INICIALIZACIÓN ====================
-document.addEventListener('DOMContentLoaded', () => {
-    initializeWebsite();
-});
+// ==================== CLASE CARRUSEL ====================
+class Carousel {
+    constructor(elementId, prefix = '') {
+        this.carousel = document.getElementById(elementId);
+        if (!this.carousel) return;
+        
+        this.prefix = prefix;
+        this.currentSlide = 0;
+        this.interval = null;
+        this.slides = this.carousel.querySelectorAll('.carousel-slide');
+        this.dots = this.carousel.querySelectorAll('.dot');
+        
+        this.init();
+    }
 
-function initializeWebsite() {
-    initCarousel();
-    initIcpcCarousel();
-    initNavigation();
-    initScrollEffects();
-    initAnimations();
-    preloadImages();
-}
+    init() {
+        this.showSlide(0);
+        this.startAutoSlide();
+        this.carousel.addEventListener('mouseenter', () => this.stopAutoSlide());
+        this.carousel.addEventListener('mouseleave', () => this.startAutoSlide());
+    }
 
-// ==================== CARRUSEL PRINCIPAL ====================
-function initCarousel() {
-    showSlide(currentSlide);
-    startAutoSlide();
+    showSlide(n) {
+        if (!this.slides.length) return;
+        
+        this.currentSlide = (n + this.slides.length) % this.slides.length;
+        
+        this.slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === this.currentSlide);
+        });
+        
+        this.dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === this.currentSlide);
+        });
+    }
 
-    const carousel = document.getElementById('carousel');
-    if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoSlide);
-        carousel.addEventListener('mouseleave', startAutoSlide);
+    changeSlide(direction) {
+        this.stopAutoSlide();
+        this.showSlide(this.currentSlide + direction);
+        this.startAutoSlide();
+    }
+
+    goToSlide(n) {
+        this.stopAutoSlide();
+        this.showSlide(n);
+        this.startAutoSlide();
+    }
+
+    startAutoSlide() {
+        this.stopAutoSlide();
+        this.interval = setInterval(() => {
+            this.showSlide(this.currentSlide + 1);
+        }, CONFIG.SLIDE_INTERVAL);
+    }
+
+    stopAutoSlide() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
     }
 }
 
-function showSlide(n) {
-    const slides = document.querySelectorAll('#carousel .carousel-slide');
-    const dots = document.querySelectorAll('#carousel .dot');
-    if (!slides.length) return;
+// ==================== INSTANCIAS DE CARRUSEL ====================
+let mainCarousel;
+let icpcCarousel;
+let talleresCarousel;
 
-    currentSlide = (n + slides.length) % slides.length;
-
-    slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
-    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-}
-
+// ==================== FUNCIONES GLOBALES DE CARRUSEL ====================
 function changeSlide(dir) {
-    stopAutoSlide();
-    showSlide(currentSlide + dir);
-    startAutoSlide();
+    mainCarousel?.changeSlide(dir);
 }
 
 function goToSlide(n) {
-    stopAutoSlide();
-    showSlide(n);
-    startAutoSlide();
-}
-
-function startAutoSlide() {
-    stopAutoSlide();
-    slideInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
-}
-
-function stopAutoSlide() {
-    clearInterval(slideInterval);
-    slideInterval = null;
-}
-
-// ==================== CARRUSEL ICPC ====================
-function initIcpcCarousel() {
-    const carousel = document.getElementById('carousel-icpc');
-    if (!carousel) return;
-
-    showIcpcSlide(currentIcpcSlide);
-    startIcpcAuto();
-
-    carousel.addEventListener('mouseenter', stopIcpcAuto);
-    carousel.addEventListener('mouseleave', startIcpcAuto);
-}
-
-function showIcpcSlide(n) {
-    const slides = document.querySelectorAll('#carousel-icpc .carousel-slide');
-    const dots = document.querySelectorAll('#carousel-icpc .dot');
-    if (!slides.length) return;
-
-    currentIcpcSlide = (n + slides.length) % slides.length;
-
-    slides.forEach((s, i) => s.classList.toggle('active', i === currentIcpcSlide));
-    dots.forEach((d, i) => d.classList.toggle('active', i === currentIcpcSlide));
+    mainCarousel?.goToSlide(n);
 }
 
 function changeIcpcSlide(dir) {
-    stopIcpcAuto();
-    showIcpcSlide(currentIcpcSlide + dir);
-    startIcpcAuto();
+    icpcCarousel?.changeSlide(dir);
 }
 
 function goToIcpcSlide(n) {
-    stopIcpcAuto();
-    showIcpcSlide(n);
-    startIcpcAuto();
+    icpcCarousel?.goToSlide(n);
 }
 
-function startIcpcAuto() {
-    stopIcpcAuto();
-    icpcInterval = setInterval(() => showIcpcSlide(currentIcpcSlide + 1), 5000);
+function changeTalleresSlide(dir) {
+    talleresCarousel?.changeSlide(dir);
 }
 
-function stopIcpcAuto() {
-    clearInterval(icpcInterval);
-    icpcInterval = null;
+function goToTalleresSlide(n) {
+    talleresCarousel?.goToSlide(n);
 }
 
 // ==================== NAVEGACIÓN ====================
+class Navigation {
+    constructor() {
+        this.navList = document.getElementById('navList');
+        this.init();
+    }
+
+    init() {
+        this.setupSmoothScroll();
+        window.addEventListener('scroll', throttle(() => this.updateActiveNav(), 100));
+    }
+
+    setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                if (targetId === '#') return;
+
+                const target = document.querySelector(targetId);
+                if (!target) return;
+
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+                const navHeight = document.querySelector('.nav')?.offsetHeight || 0;
+                const offset = headerHeight + navHeight + 20;
+
+                window.scrollTo({
+                    top: target.offsetTop - offset,
+                    behavior: 'smooth'
+                });
+
+                this.closeMenus();
+            });
+        });
+    }
+
+    updateActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        let current = '';
+
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 200) {
+                current = section.id;
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.toggle('active', 
+                link.getAttribute('href') === `#${current}`
+            );
+        });
+    }
+
+    closeMenus() {
+        this.navList?.classList.remove('active');
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    }
+}
+
 function toggleMenu() {
     document.getElementById('navList')?.classList.toggle('active');
 }
 
 function toggleDropdown(button) {
     if (window.innerWidth > 768) return;
+    
     const dropdown = button.parentElement;
     document.querySelectorAll('.dropdown').forEach(d => {
         if (d !== dropdown) d.classList.remove('active');
@@ -122,132 +173,160 @@ function toggleDropdown(button) {
     dropdown.classList.toggle('active');
 }
 
-function initNavigation() {
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            if (targetId === '#') return;
+// ==================== SCROLL EFFECTS ====================
+class ScrollEffects {
+    constructor() {
+        this.scrollBtn = document.getElementById('scrollTop');
+        this.init();
+    }
 
-            const target = document.querySelector(targetId);
-            if (!target) return;
+    init() {
+        window.addEventListener('scroll', throttle(() => {
+            this.handleScrollTopButton();
+        }, 100));
+        this.handleScrollTopButton();
+    }
 
-            const offset = (document.querySelector('.header')?.offsetHeight || 0) +
-                           (document.querySelector('.nav')?.offsetHeight || 0) + 20;
-
-            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
-            document.getElementById('navList')?.classList.remove('active');
-            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
-        });
-    });
-
-    window.addEventListener('scroll', throttle(updateActiveNav, 100));
-}
-
-function updateActiveNav() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    let current = '';
-
-    sections.forEach(sec => {
-        if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
-    });
-
-    navLinks.forEach(link =>
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`)
-    );
-}
-
-// ==================== SCROLL & EFECTOS ====================
-function initScrollEffects() {
-    window.addEventListener('scroll', throttle(() => {
-        handleScrollTopButton();
-        revealOnScroll();
-    }, 100));
-    handleScrollTopButton();
-    revealOnScroll();
+    handleScrollTopButton() {
+        if (!this.scrollBtn) return;
+        this.scrollBtn.classList.toggle('visible', window.scrollY > CONFIG.SCROLL_THRESHOLD);
+    }
 }
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function handleScrollTopButton() {
-    const btn = document.getElementById('scrollTop');
-    if (!btn) return;
-    btn.classList.toggle('visible', window.scrollY > 300);
-}
-
-function revealOnScroll() {
-    document.querySelectorAll('.card, .timeline-item').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }
-    });
-}
-
 // ==================== ANIMACIONES ====================
-function initAnimations() {
-    const observer = new IntersectionObserver(entries => {
+class AnimationController {
+    constructor() {
+        this.observer = null;
+        this.init();
+    }
+
+    init() {
+        this.observer = new IntersectionObserver(
+            entries => this.handleIntersection(entries),
+            { 
+                threshold: CONFIG.ANIMATION_THRESHOLD,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        this.setupElements();
+    }
+
+    setupElements() {
+        document.querySelectorAll('.card, .timeline-item, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            this.observer.observe(el);
+        });
+    }
+
+    handleIntersection(entries) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
+            
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-            if (entry.target.classList.contains('stat-item')) animateCounter(entry.target);
+            
+            if (entry.target.classList.contains('stat-item')) {
+                this.animateCounter(entry.target);
+            }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }
 
-    document.querySelectorAll('.card, .timeline-item, .stat-item').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
+    animateCounter(element) {
+        const numberEl = element.querySelector('.stat-number');
+        if (!numberEl || numberEl.dataset.animated) return;
+
+        const finalValue = numberEl.textContent;
+        const number = parseInt(finalValue.replace(/\D/g, ''));
+        const suffix = finalValue.replace(/\d/g, '');
+        
+        if (isNaN(number)) return;
+
+        numberEl.dataset.animated = 'true';
+        let current = 0;
+        const increment = Math.ceil(number / 50);
+        const stepTime = CONFIG.COUNTER_DURATION / (number / increment);
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= number) {
+                clearInterval(timer);
+                current = number;
+            }
+            numberEl.textContent = current + suffix;
+        }, stepTime);
+    }
 }
 
-function animateCounter(el) {
-    const numberEl = el.querySelector('.stat-number');
-    if (!numberEl) return;
-
-    const finalValue = numberEl.textContent;
-    const number = parseInt(finalValue.replace(/\D/g, ''));
-    const suffix = finalValue.replace(/\d/g, '');
-    if (isNaN(number)) return;
-
-    let current = 0;
-    const increment = Math.ceil(number / 50);
-    const stepTime = 2000 / (number / increment);
-
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= number) {
-            clearInterval(timer);
-            current = number;
-        }
-        numberEl.textContent = current + suffix;
-    }, stepTime);
-}
-
-// ==================== FORMULARIO DE CONTACTO ====================
+// ==================== FORMULARIO ====================
 function handleSubmit(e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
+    const formData = {
+        name: document.getElementById('name')?.value.trim(),
+        email: document.getElementById('email')?.value.trim(),
+        subject: document.getElementById('subject')?.value.trim(),
+        message: document.getElementById('message')?.value.trim()
+    };
 
-    if (!name || !email || !subject || !message)
-        return showNotification('Por favor, completa todos los campos', 'error');
+    // Validación
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        alert('Por favor, completa todos los campos');
+        return;
+    }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-        return showNotification('Por favor, ingresa un correo electrónico válido', 'error');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        alert('Por favor, ingresa un correo electrónico válido');
+        return;
+    }
 
-    const mailtoLink = `mailto:memi@fcyt.umss.edu.bo?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-        `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`
+    // Crear mailto
+    const mailtoLink = `mailto:memi@fcyt.umss.edu.bo?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `Nombre: ${formData.name}\nEmail: ${formData.email}\n\nMensaje:\n${formData.message}`
     )}`;
+    
     window.location.href = mailtoLink;
-    showNotification('Redirigiendo a tu cliente de correo...', 'success');
-    document.getElementById('contactForm').reset();
+    document.getElementById('contactForm')?.reset();
 }
+
+// ==================== UTILIDADES ====================
+function throttle(func, delay) {
+    let timeoutId;
+    let lastRan;
+    
+    return function(...args) {
+        if (!lastRan) {
+            func.apply(this, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                if ((Date.now() - lastRan) >= delay) {
+                    func.apply(this, args);
+                    lastRan = Date.now();
+                }
+            }, delay - (Date.now() - lastRan));
+        }
+    };
+}
+
+// ==================== INICIALIZACIÓN ====================
+document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar carruseles
+    mainCarousel = new Carousel('carousel');
+    icpcCarousel = new Carousel('carousel-icpc', 'icpc');
+    talleresCarousel = new Carousel('carousel-talleres', 'talleres');
+    
+    // Inicializar otros componentes
+    new Navigation();
+    new ScrollEffects();
+    new AnimationController();
+    
+    console.log('✅ Centro MEMI - Website inicializado correctamente');
+});
